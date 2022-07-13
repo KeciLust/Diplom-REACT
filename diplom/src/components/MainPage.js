@@ -7,29 +7,30 @@ import Catalog from './Catalog';
 
 
 function MainPage() {
-  const [top, setTop] = useState([]);
+  const [top, setTop] = useState(null);
+  const [loadTop, setLoadTop] = useState(false);
   const [categories, setCategories] = useState([]);
   const [catalog, setCatalog] = useState([]);
 
-  const [dataTop, loadingTop, errorTop] = useJsonFetch('http://localhost:7070/api/top-sales');
-  const [dataCategories, loadingCategories, errorCategories] = useJsonFetch('http://localhost:7070/api/categories');
-  const [dataCatalog, loadingCatalog, errorCatalog] = useJsonFetch('http://localhost:7070/api/items');
-
-  useEffect(() => {
-    setTop(dataTop);
-  }, [loadingTop]);
+  const [dataTop, loadingTop] = useJsonFetch('http://localhost:7070/api/top-sales');
+  const [dataCategories] = useJsonFetch('http://localhost:7070/api/categories');
+  const [dataCatalog] = useJsonFetch('http://localhost:7070/api/items');
 
   useEffect(() => {
     setCategories(dataCategories);
-  }, [loadingCategories]);
+  }, [dataCategories]);
+
+  useEffect(() => {
+    setTop(dataTop)
+    setLoadTop(loadingTop);
+  }, [dataTop, loadingTop]);
 
   useEffect(() => {
     setCatalog(dataCatalog);
-  }, [loadingCatalog]);
-
+  }, [dataCatalog]);
   return (<>
-    {top?<Top items={top} />:<LoaderTop />}
-    {catalog?<Catalog items={[catalog, categories]} />: <LoaderCatalog />}
+    {loadTop ? <LoaderTop /> : top ? <Top items={top} /> : null}
+    {catalog ? <Catalog items={[catalog, categories]} /> : <LoaderCatalog />}
   </>)
 }
 
