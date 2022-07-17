@@ -8,12 +8,15 @@ import AboutPage from './components/AboutPage';
 import ContactsPage from './components/ContactsPage';
 import Main from './components/Main';
 import Context from './components/Context';
+import SearchHeader from './components/SearchHeader';
 
 
 function App() {
   return (<>
     <Context >
-      <Header />
+      <Header >
+        <SearchHeader />
+      </Header>
       <Main >
         <BrowserRouter>
           <Routes >

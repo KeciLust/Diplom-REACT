@@ -20,6 +20,7 @@ function Catalog(props) {
   return (<>
     <section className="catalog">
       <h2 className="text-center">Каталог</h2>
+      
       <ul className="catalog-categories nav justify-content-center">
         <li className="nav-item">
           <a className="nav-link active" href="/" id={null} onClick={onClick}>Все</a>

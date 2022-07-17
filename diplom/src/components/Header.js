@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from './header-logo.png'
 
-function Header() {
+function Header(props) {
     return (<header className="container">
         <div className="row">
             <div className="col">
@@ -27,23 +27,21 @@ function Header() {
                         </ul>
                         <div>
                             <div className="header-controls-pics">
-                                <div data-id="search-expander" className="header-controls-pic header-controls-search"></div>
-                                {/* <!-- Do programmatic navigation on click to /cart.html --> */}
+                                {props.children}
                                 <div className="header-controls-pic header-controls-cart">
                                     <div className="header-controls-cart-full">1</div>
                                     <div className="header-controls-cart-menu"></div>
                                 </div>
                             </div>
-                            <form data-id="search-form" className="header-controls-search-form form-inline invisible">
-                                <input className="form-control" placeholder="Поиск" />
-                            </form>
+                            
                         </div>
                     </div>
                 </nav>
-
             </div>
         </div>
-    </header>)
+    </header>
+
+    )
 
 }
 
