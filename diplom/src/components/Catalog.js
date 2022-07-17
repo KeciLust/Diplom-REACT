@@ -7,12 +7,9 @@ import CatalogContext from '../context/CatalogContext';
 
 function Catalog(props) {
   const data = props;
-
   const { idChange } = useContext(CatalogContext);
-
   const onClick = (e) => {
     e.preventDefault();
-
     const items = document.querySelector('.catalog-categories').querySelectorAll('.nav-link');
     items.forEach(el => el.classList.remove('active'));
     e.target.classList.add('active');
@@ -32,9 +29,7 @@ function Catalog(props) {
       <div className="row">
         {data.items[0].map((el) => { return <CardCatalog items={el} key={nanoid()} /> })}
       </div>
-      <div className="text-center">
-        <button className="btn btn-outline-primary">Загрузить ещё</button>
-      </div>
+      {props.children}
     </section>
   </>)
 }

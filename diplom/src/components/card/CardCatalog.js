@@ -3,8 +3,7 @@ import React from 'react'
 
 function CardCatalog(props) {
   const data = props;
-  
- 
+
   return (<>
     <div className="col-4" id={data.items.id} >
       <div className="card catalog-item-card">
